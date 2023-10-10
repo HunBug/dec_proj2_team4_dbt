@@ -35,5 +35,11 @@ models:
   dec_proj2_team4:
     # Applies to all files under models/example/
     dim:
-      materialized: table
-      schema: dim
+      +materialized: table
+      +database:  {{ 'dev_dim' if target.name == 'dev' else 'dim' }}
+      +schema: dbt_dim
+      
+    staging:
+      +materialized: table
+      +database:  {{ 'dev_stage' if target.name == 'dev' else 'stage' }}
+      +schema: dbt_stage
