@@ -24,7 +24,7 @@ with employees as (
 )
 
 select
-    {{ dbt_utils.generate_surrogate_key(['EMPLOYEE_ID', 'dbt_valid_from']) }} as products_key,
+    dbt_scd_id as employees_key,
     EMPLOYEE_ID,
     LAST_NAME,
     FIRST_NAME,
@@ -41,6 +41,6 @@ select
     EXTENSION,
     NOTES,
     REPORTS_TO,
-    dbt_valid_from as valid_from, 
-    dbt_valid_to as valid_to
+    dbt_valid_from::date as valid_from, 
+    ifnull(dbt_valid_to::date, current_date) as valid_to
 from employees

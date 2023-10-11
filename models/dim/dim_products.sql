@@ -18,7 +18,7 @@ with products as (
 )
 
 select
-    {{ dbt_utils.generate_surrogate_key(['PRODUCT_ID', 'dbt_valid_from']) }} as products_key,
+    dbt_scd_id as products_key,
     PRODUCT_ID,
     PRODUCT_NAME,
 --        SUPPLIER_ID,
@@ -29,6 +29,6 @@ select
     UNITS_ON_ORDER,
     REORDER_LEVEL,
     DISCONTINUED,
-    dbt_valid_from as valid_from, 
-    dbt_valid_to as valid_to
+    dbt_valid_from::date as valid_from, 
+    ifnull(dbt_valid_to::date,current_date) as valid_to
 from products
