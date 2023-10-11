@@ -2,7 +2,6 @@
 
 {{
     config(
-        target_schema='stage',
         strategy='check',
         unique_key='CUSTOMER_ID',
         check_cols='all'
