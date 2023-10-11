@@ -37,13 +37,13 @@ models:
     dim:
       +materialized: table
       +database: "{{ 'dev_dim' if target.name == 'dev' else 'dim' }}"
-      +schema: dbt_dim
+      +schema: sales
       
     staging:
       +materialized: table
       +database: "{{ 'dev_stage' if target.name == 'dev' else 'stage' }}"
-      +schema: dbt_stage
+      +schema: stage
 
 snapshots:
-  +target_schema: dbt_stage
+  +target_schema: stage
   +target_database: "{{ 'dev_stage' if target.name == 'dev' else 'stage' }}"
