@@ -19,7 +19,7 @@ with customers as (
 )
 
 select
-    {{ dbt_utils.generate_surrogate_key(['CUSTOMER_ID', 'dbt_valid_from']) }} as products_key,
+    dbt_scd_id as customers_key,
     CUSTOMER_ID,
     COMPANY_NAME,
     CONTACT_NAME,
@@ -31,6 +31,6 @@ select
     COUNTRY,
     PHONE,
     FAX,
-    dbt_valid_from as valid_from, 
-    dbt_valid_to as valid_to
+    dbt_valid_from::date as valid_from, 
+    ifnull(dbt_valid_to::date,current_date) as valid_to
 from customers

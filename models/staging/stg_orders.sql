@@ -1,6 +1,6 @@
 {{
     config(
-        materialized='table'
+        materialized='incremental'
     )
 }}
 
@@ -9,6 +9,15 @@ raw_order_headers as (
     select 
         {{ dbt_utils.star(from=source('postgres_rds_public', 'orders'), except=["_fivetran_deleted", "_fivetran_synced"]) }}
     from {{ source('postgres_rds_public', 'orders') }}
+    where true
+
+{% if is_incremental() %}
+
+  -- this filter will only be applied on an incremental run
+  -- (uses > to include records whose timestamp occurred since the last run of this model)
+    and order_date > (select max(order_date) from {{ this }})
+
+{% endif %}
 )
 , raw_order_details as (
     select 
@@ -45,7 +54,7 @@ raw_order_headers as (
         ,round(sum(amount) over (partition by customer_id, order_id),2) as total_order_amount
         ,sum(quantity) over (partition by customer_id, order_id) as total_order_quantity
     from raw_order_headers
-    left join raw_order_details using(order_id)
+    inner join raw_order_details using(order_id)
 
 )
     select * from final 
