@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: amount
+        tests:
+          - check_round:
+              max_fraction_digits: 2
