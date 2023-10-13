@@ -1,0 +1,21 @@
+version: 2
+
+exposures:
+  - name: northwind_sales
+    label: NorthWind Sales Dashboard
+    type: dashboard
+    maturity: high
+    url: https://mimico.eu.looker.com/dashboards/56?Product+Name=&Customer+Country=&Customer+Region=&Category+Name=&Customer+City=
+    description: >
+      Are we headed in the right direction?
+
+    depends_on:
+      - ref('fct_orders')
+      - ref('dim_customers')
+      - ref('dim_employees')
+      - ref('dim_products')
+      - ref('dim_categories')
+
+    owner:
+      name: Andrew Fuller
+      email: andrew.fuller@northwind.com
