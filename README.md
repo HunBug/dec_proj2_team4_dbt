@@ -22,7 +22,12 @@ In this project, our team aims to analyze data from the Northwind Database to ex
 
 ## Technologies Used
 
-We are using a variety of technologies and tools to accomplish our project goals:
+We are using a variety of technologies and tools to accomplish our project goals. This image will give you an overview of the architecture.
+
+![DataEngineering - Frame 4](https://github.com/cristianivanoff/dec_proj2_team4_dbt/assets/72450060/053c139d-f795-4596-ac57-511059e8bf6e)
+
+
+
 
 - **Data Source**: We are sourcing data from a PostgreSQL database, which we can manage using PGAdmin.
 
