@@ -4,7 +4,7 @@ with stg_suppliers as (
 )
 
 select
-    {{ dbt_utils.generate_surrogate_key(['stg_suppliers.supplier_id']) }} as supplier_key,
+    {{ dbt_utils.generate_surrogate_key(['stg_suppliers.supplier_id']) }} as supplier_fk,
     supplier_id,
     company_name,
     contact_name,
