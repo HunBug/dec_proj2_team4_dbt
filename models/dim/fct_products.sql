@@ -10,18 +10,22 @@ with product_agg as (
 
 transform as (
     select
-        stg_products.product_id,
+        stg_products.product_id as product_id,
+        stg_products.supplier_id as supplier_id,
         unit_price as latest_unit_price,
         max_unit_price,
         min_unit_price,
         suppliers_count
     from {{ ref('stg_products') }}
     left join product_agg on product_agg.product_id = stg_products.product_id 
+    left join {{ ref('stg_suppliers')}} on stg_suppliers.supplier_id = stg_products.supplier_id
 )
 
 select
     {{ dbt_utils.generate_surrogate_key(['product_id']) }} as product_fk,
+    {{ dbt_utils.generate_surrogate_key(['supplier_id']) }} as supplier_fk,
     product_id,
+    supplier_id,
     latest_unit_price,
     max_unit_price,
     min_unit_price,
