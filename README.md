@@ -4,6 +4,8 @@
 
 In this project, our team aims to analyze data from the Northwind Database to extract valuable insights and provide meaningful reports. The project has several key objectives (besides learning the technologies), including:
 
+### Sales report
+
 1. **Customer Count**: Calculate the total number of customers acquired throughout the company's lifetime.
 
 2. **Average Order Value**: Calculate the average value of each order.
@@ -20,6 +22,16 @@ In this project, our team aims to analyze data from the Northwind Database to ex
 
 8. **Top Sales Representatives**: Identify the sales representatives with the highest sales.
 
+### Products report
+
+9. **Total products**: Calculate the total number of products the company sells.
+
+12. **On Sale**: Identify and collect products that currently have prices lower than their historical average. Calculate the rate of price decrease.
+
+13. **Suppliers by region**: Determine the countries/suppliers where our products are delivered from.
+
+14. **Products with multiple suppliers**: Collect those products with different suppliers in the past.
+
 ## Technologies Used
 
 We are using a variety of technologies and tools to accomplish our project goals. This image will give you an overview of the architecture.
@@ -35,16 +47,23 @@ We are using a variety of technologies and tools to accomplish our project goals
 
 - **Data Warehouse**: We store and transform our data in Snowflake, where we create role-based access permissions.
 
-- **Data Transformation**: All data transformations are performed using dbt-cloud. We create tests and a Kimball-style model with fact and dimension tables. These tables contain calculations, including window functions.
+- **Data Transformation**: All data transformations are performed using dbt-cloud. We create tests and a Kimball-style model with fact and dimension tables. These tables contain calculations, including window functions. DBT snapshots are used to capture data changes over time and these are used for generating accumulating fact tables (Product reports).
   - dbt lineage:
+    ### Sales report
   ![Skärmavbild 2023-10-14 kl  17 06 37](https://github.com/cristianivanoff/dec_proj2_team4_dbt/assets/72450060/a5a56797-ccc8-4945-8ffa-f53a1bcc909c)
+    ### Products report
+  ![image](https://github.com/cristianivanoff/dec_proj2_team4_dbt/assets/7292931/869cd25b-9bb1-4dac-a840-a24a658e9d0d)
 
   - Dimensional model:
   ![Skärmavbild 2023-10-14 kl  16 43 21](https://github.com/cristianivanoff/dec_proj2_team4_dbt/assets/72450060/f838368d-fda2-4836-bc3e-3b8da003e2ad)
 
 
 - **Visualization**: Our visualizations are created and presented using Looker.
-![Skärmavbild 2023-10-14 kl  17 00 44](https://github.com/cristianivanoff/dec_proj2_team4_dbt/assets/72450060/0e35a316-d408-40bf-b317-8261652b5c29)
+  ### Sales report
+  ![Skärmavbild 2023-10-14 kl  17 00 44](https://github.com/cristianivanoff/dec_proj2_team4_dbt/assets/72450060/0e35a316-d408-40bf-b317-8261652b5c29)
+  ### Products report
+  ![image](https://github.com/cristianivanoff/dec_proj2_team4_dbt/assets/7292931/8dd606d0-2d75-43c5-b275-c6113a7ad9c8)
+
 
 - **Version Control**: All code developed for this project is stored in two separate Git repositories, one for dbt and one for Looker, allowing for independent development.
   - **dbt Repository**: You can find the code for data transformations in the dbt repository [here](https://github.com/cristianivanoff/dec_proj2_team4_dbt).
