@@ -29,7 +29,7 @@ We are using a variety of technologies and tools to accomplish our project goals
 
 
 
-- **Data Source**: We are sourcing data from a PostgreSQL database, which we can manage using PGAdmin.
+- **Data Source**: We are sourcing data from a PostgreSQL database, which we can manage using PGAdmin. The database is in AWS.
 
 - **Data Replication**: Data replication and movement are achieved through Change Data Capture (CDC) using Fivetran.
 
