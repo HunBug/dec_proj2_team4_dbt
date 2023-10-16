@@ -1,0 +1,18 @@
+version: 2
+
+exposures:
+  - name: northwind_products
+    label: NorthWind Products Dashboard
+    type: dashboard
+    maturity: high
+    url: https://mimico.eu.looker.com/dashboards/57
+    description: >
+      Details of our products and suppliers.
+
+    depends_on:
+      - ref('fct_products')
+      - ref('dim_suppliers')
+
+    owner:
+      name: Andrew Fuller
+      email: andrew.fuller@northwind.com
